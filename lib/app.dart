@@ -25,11 +25,17 @@ class EntriesRepository {
   static Future<EntriesRepository> load() async {
     var storage = LocalStorage("ablaufi");
     var entries = storage.getItem("entries");
-    if (!entries is List) {
-      return EntriesRepository(entries: <Entry>[]);
+    if (entries is List) {
+      if (entries.isEmpty) {
+        return EntriesRepository(entries: <Entry>[]);
+      }
+
+      if (entries.first is Entry) {
+        return EntriesRepository(entries: entries as List<Entry>);
+      }
     }
 
-    return EntriesRepository(entries: entries);
+    return EntriesRepository(entries: <Entry>[]);
   }
 
   final List<Entry> entries;
