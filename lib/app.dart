@@ -105,7 +105,9 @@ class _HomePageState extends State<HomePage>
 
                   return GridView.count(
                     crossAxisCount: 2,
-                    physics: const BouncingScrollPhysics(),
+                    physics: const AlwaysScrollableScrollPhysics(
+                      parent: BouncingScrollPhysics(),
+                    ),
                     children: [
                       for (var entry in pool.entries)
                         ChangeNotifierProvider<Entry>.value(
@@ -296,7 +298,28 @@ class _EntryEditorState extends State<_EntryEditor> {
           ),
         TextButton(
           child: const Icon(Icons.check),
-          onPressed: () {
+          onPressed: () async {
+            if (_expiresAt == null) {
+              await showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: const Text("Das Ablaufdatum muss angegeben werden!"),
+                    actions: [
+                      TextButton(
+                        child: const Text("OK"),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ],
+                  );
+                },
+              );
+
+              return;
+            }
+
             Navigator.of(context).pop(
               EmptyEntry(
                 _nameController.text,
