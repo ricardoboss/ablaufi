@@ -160,23 +160,29 @@ class _HomePageState extends State<HomePage>
                                     ),
                                   ),
                                   padding: const EdgeInsets.all(4.0),
-                                  child: Expanded(
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Card(
-                                            color:
-                                                Colors.white.withOpacity(0.7),
-                                            child: Center(child: Text(e.name, style: DefaultTextStyle.of(context).style.copyWith(fontSize: 16.0),))),
-                                        Card(
-                                            color:
-                                                Colors.white.withOpacity(0.7),
-                                            child: Center(
-                                                child: Text(
-                                                    "${e.expiresAt.day}.${e.expiresAt.month}.${e.expiresAt.year}", style: DefaultTextStyle.of(context).style.copyWith(fontSize: 20.0),))),
-                                      ],
-                                    ),
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Card(
+                                          color: Colors.white.withOpacity(0.7),
+                                          child: Center(
+                                              child: Text(
+                                            e.name,
+                                            style: DefaultTextStyle.of(context)
+                                                .style
+                                                .copyWith(fontSize: 16.0),
+                                          ))),
+                                      Card(
+                                          color: Colors.white.withOpacity(0.7),
+                                          child: Center(
+                                              child: Text(
+                                            "${e.expiresAt.day}.${e.expiresAt.month}.${e.expiresAt.year}",
+                                            style: DefaultTextStyle.of(context)
+                                                .style
+                                                .copyWith(fontSize: 20.0),
+                                          ))),
+                                    ],
                                   ),
                                 ),
                               ),
